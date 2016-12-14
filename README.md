@@ -53,3 +53,11 @@ frontend
 vendor/                  contains dependent 3rd-party packages
 environments/            contains environment-based overrides
 ```
+
+### 流程
+
+* git clone git@github.com:yiisoft/yii2-app-advanced.git
+* composer install
+* php inti
+* php yii migrate
+---

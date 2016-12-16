@@ -32,6 +32,11 @@ class SiteController extends Controller
                         'actions' => ['signup'],
                         'allow' => true,
                         'roles' => ['?'],
+                        // 'ips' => ['15.12.45.45']
+                        'matchCallback' => function ($rule, $action) {
+                            return date('m-d') === '12-16';
+                        },
+                        'verbs' => ['get'],
                     ],
                     [
                         'actions' => ['logout'],
@@ -39,6 +44,11 @@ class SiteController extends Controller
                         'roles' => ['@'],
                     ],
                 ],
+
+                'denyCallback' => function($rule, $action) {
+                    throw new \Exception("you are not allowed to access this page");
+                }
+
             ],
             'verbs' => [
                 'class' => VerbFilter::className(),
@@ -72,6 +82,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        // die("http://biphp.jucaicat.net/api/bee_user_info/post");
         return $this->render('index');
     }
 
